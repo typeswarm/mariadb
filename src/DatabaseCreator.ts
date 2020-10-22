@@ -19,7 +19,7 @@ const createScript = (upds: UserPasswordDatabase[]) =>
                     : `CREATE USER IF NOT EXISTS '${upd.user}'@'%' ${
                           upd.password ? `IDENTIFIED BY '${upd.password}'` : ''
                       };`,
-                `CREATE DATABASE IF NOT EXISTS ${upd.database};`,
+                `CREATE DATABASE IF NOT EXISTS ${upd.database} CHARACTER SET utf8 COLLATE utf8_general_ci;`,
                 `GRANT ALL ON ${upd.database}.* TO '${upd.user}'@'%';`,
             ]
                 .filter((_) => _)
